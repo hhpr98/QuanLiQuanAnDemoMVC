@@ -1,0 +1,98 @@
+﻿@model Tuple<List<ChuoiCuaHang>, CuaHang>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản lí quán ăn v1.0</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <br />
+    <h3><center><b style="color:red;">Chỉnh sửa cửa hàng</b></center></h3>
+    <br />
+    <form class="container" method="get" action="@Url.Action("Index")">
+        <div class="col">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <b>Tên cửa hàng</b>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="name" value="@Model.Item2.TenCuaHang">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <b>Địa chỉ</b>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="address" value="@Model.Item2.DiaChi">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <b>Doanh thu</b>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="total" value="@Model.Item2.DoanhThu">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <b>Số khách</b>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="number" value="@Model.Item2.SoKhach">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <b>Chuỗi cửa hàng</b>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="chuoi" value="HMART Nguyễn Văn Cừ">
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tên chuỗi
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var l in Model.Item1)
+                        {
+                            <div class="dropdown-item">@l.TenChuoi</div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Sửa</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+

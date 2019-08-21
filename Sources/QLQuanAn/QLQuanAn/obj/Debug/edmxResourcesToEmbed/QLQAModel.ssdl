@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLiQuanAnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChuoiCuaHang">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenChuoi" Type="ntext" />
+  </EntityType>
+  <EntityType Name="CuaHang">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenCuaHang" Type="ntext" />
+    <Property Name="DiaChi" Type="ntext" />
+    <Property Name="DoanhThu" Type="float" />
+    <Property Name="SoKhach" Type="int" />
+    <Property Name="ChuoiCuaHang" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="QuanLiQuanAnModelStoreContainer">
+    <EntitySet Name="ChuoiCuaHang" EntityType="Self.ChuoiCuaHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CuaHang" EntityType="Self.CuaHang" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

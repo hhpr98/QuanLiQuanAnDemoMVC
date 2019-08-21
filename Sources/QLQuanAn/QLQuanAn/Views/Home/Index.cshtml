@@ -1,0 +1,94 @@
+﻿@model Tuple<List<ChuoiCuaHang>, List<CuaHang>>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản lí quán ăn v1.0</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><b style="color:red;">Chuỗi cửa hàng</b></h3>
+                        <br />
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            @foreach (var c in Model.Item1)
+                            {
+                                if (c.ID == ViewBag.curId)
+                                {
+                                    <a href="@Url.Action("Details", new { id = c.ID })" class="list-group-item active" style="text-decoration:none;">@c.TenChuoi</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Details", new { id = c.ID })" class="list-group-item" style="text-decoration:none;">@c.TenChuoi</a>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-success">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title"><b style="color:red;">Tên cửa hàng</b></h3>
+                        <br/>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tên cửa hàng</th>
+                                    <th scope="col">Địa chỉ</th>
+                                    <th scope="col">Doanh thu</th>
+                                    <th scope="col"><Center>Số khách</Center></th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Item2 == null || Model.Item2.Count == 0)
+                                {
+                                    <tr>
+                                        <td colspan="6">Danh sách trống</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    foreach (var p in Model.Item2)
+                                    {
+                                    <tr>
+                                        <th scope="row">@p.ID</th>
+                                        <td>@p.TenCuaHang</td>
+                                        <td>@p.DiaChi</td>
+                                        <td>@p.DoanhThu VNĐ</td>
+                                        <td><center>@p.SoKhach</center></td>
+                                        <td>
+                                            <a href="@Url.Action("Add")" class="wishlist-btn"><i class="fa fa-plus"></i></a>
+                                            <a href="@Url.Action("Edit",new { id = p.ID })" class="wishlist-btn"><i class="fa fa-edit"></i></a>
+                                            <a href="@Url.Action("Delete",new { id = p.ID })" class="wishlist-btn"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
