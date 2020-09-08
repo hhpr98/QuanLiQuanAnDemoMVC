@@ -22,7 +22,7 @@ namespace QLQuanAn.Controllers
         }
 
         // GET: CuaHangs
-        public ActionResult Details(int id)
+        public ActionResult MartDetails(int id)
         {
             List<ChuoiCuaHang> listChuoi;
             List<CuaHang> listCuaHang;
@@ -38,23 +38,32 @@ namespace QLQuanAn.Controllers
 
         public ActionResult Add()
         {
-            List<ChuoiCuaHang> l;
-            using (var qlqa = new QuanLiQuanAnEntities())
-            {
-                l = qlqa.ChuoiCuaHangs.ToList();
-            }
-                return View("Add",l);
+            return View("Add");
         }
 
-        public ActionResult AddGet()
+        [HttpPost]
+        public ActionResult Add(string name,string address,double total,int number,int chuoi)
         {
+            using (var db = new QuanLiQuanAnEntities())
+            {
+                var _mart = new CuaHang();
+                _mart.TenCuaHang = name;
+                _mart.DiaChi = address;
+                _mart.DoanhThu = total;
+                _mart.SoKhach = number;
+                _mart.ChuoiCuaHang = chuoi;
+                db.CuaHangs.Add(_mart);
+                db.SaveChanges();
+            }    
+
+            // return về view index
             List<ChuoiCuaHang> l;
             using (var qlqa = new QuanLiQuanAnEntities())
             {
                 l = qlqa.ChuoiCuaHangs.ToList();
             }
             ViewBag.curId = -1;
-            return View(new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(l, null));
+            return View("Index",new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(l, null));
         }
 
         public ActionResult Edit(int id)

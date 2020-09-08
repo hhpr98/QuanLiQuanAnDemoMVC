@@ -1,6 +1,4 @@
-﻿@model List<ChuoiCuaHang>
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -21,7 +19,8 @@
     <br />
     <h3><center><b style="color:red;">Thêm cửa hàng</b></center></h3>
     <br />
-    <form class="container" method="get" action="@Url.Action("Index")">
+    @using (Html.BeginForm("Add", "Home", FormMethod.Post))
+    {
         <div class="col">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -29,7 +28,7 @@
                     <b>Tên cửa hàng</b>
                 </div>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" required class="form-control" name="name">
                 </div>
             </div>
             <br />
@@ -39,7 +38,7 @@
                     <b>Địa chỉ</b>
                 </div>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" id="address">
+                    <input type="text" required class="form-control" name="address">
                 </div>
             </div>
             <br />
@@ -49,7 +48,7 @@
                     <b>Doanh thu</b>
                 </div>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" id="total">
+                    <input type="number" min="0" required class="form-control" name="total">
                 </div>
             </div>
             <br />
@@ -59,7 +58,7 @@
                     <b>Số khách</b>
                 </div>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" id="number">
+                    <input type="number" min="0" required class="form-control" name="number">
                 </div>
             </div>
             <br />
@@ -69,18 +68,16 @@
                     <b>Chuỗi cửa hàng</b>
                 </div>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" id="chuoi">
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tên chuỗi
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach (var l in Model)
+                    <select class="form-control" name="chuoi">
+                        @using (var chuoiCH = new QuanLiQuanAnEntities())
                         {
-                            <div class="dropdown-item">@l.TenChuoi</div>
-                        }
-                    </div>
+                            var _chuoi = chuoiCH.ChuoiCuaHangs.ToList();
+                            foreach (var item in _chuoi)
+                            {
+                                <option value="@item.ID">@item.TenChuoi</option>
+                            };
+                        };
+                    </select>
                 </div>
             </div>
             <br />
@@ -91,8 +88,6 @@
                 </div>
             </div>
         </div>
-    </form>
+    }
 </body>
 </html>
-
-
