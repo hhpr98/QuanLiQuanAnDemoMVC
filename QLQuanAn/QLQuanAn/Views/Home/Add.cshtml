@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-md-5">
                     <select class="form-control" name="chuoi">
-                        @using (var chuoiCH = new QuanLiQuanAnEntities())
+                        @using (var chuoiCH = new QLQuanAn.Models.QuanLiQuanAnEntities())
                         {
                             var _chuoi = chuoiCH.ChuoiCuaHangs.ToList();
                             foreach (var item in _chuoi)

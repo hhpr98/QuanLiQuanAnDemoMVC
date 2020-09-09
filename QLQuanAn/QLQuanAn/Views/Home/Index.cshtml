@@ -45,7 +45,9 @@
                 <div class="panel panel-success">
                     <div class="panel-heading text-center">
                         <h3 class="panel-title"><b style="color:red;">Tên cửa hàng</b></h3>
-                        <br/>
+                        <a href="@Url.Action("Add")" class="btn btn-outline-danger btn-sm active pull-left" role="button" aria-pressed="true">Thêm mới</a>
+                        <br />
+                        <br />
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">
@@ -56,7 +58,7 @@
                                     <th scope="col" style="width:25%;">Địa chỉ</th>
                                     <th scope="col">Doanh thu</th>
                                     <th scope="col"><Center>Số khách</Center></th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="width:5%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,18 +72,19 @@
                                 {
                                     foreach (var p in Model.Item2)
                                     {
-                                    <tr>
-                                        <th scope="row">@p.ID</th>
-                                        <td>@p.TenCuaHang</td>
-                                        <td>@p.DiaChi</td>
-                                        <td>@String.Format("{0,15:N0} VNĐ", @p.DoanhThu)</td>
-                                        <td><center>@p.SoKhach</center></td>
-                                        <td>
-                                            <a href="@Url.Action("Add")" class="wishlist-btn"><i class="fa fa-plus"></i></a>
-                                            <a href="@Url.Action("Edit",new { id = p.ID })" class="wishlist-btn"><i class="fa fa-edit"></i></a>
-                                            <a href="@Url.Action("Delete",new { id = p.ID })" class="wishlist-btn" onclick="return confirm ('Bạn có muốn xóa cửa hàng này?');"><i class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">@p.ID</th>
+                                            <td>@p.TenCuaHang</td>
+                                            <td>@p.DiaChi</td>
+                                            <td>@String.Format("{0,15:N0} VNĐ", @p.DoanhThu)</td>
+                                            <td><center>@p.SoKhach</center></td>
+                                            <td>
+                                                <center>
+                                                    <a href="@Url.Action("Edit",new { id = p.ID })" class="wishlist-btn"><i class="fa fa-edit"></i></a>
+                                                    <a href="@Url.Action("Delete",new { id = p.ID })" class="wishlist-btn" onclick="return confirm ('Bạn có muốn xóa cửa hàng này?');"><i class="fa fa-trash"></i></a>
+                                                </center>
+                                            </td>
+                                        </tr>
                                     }
                                 }
                             </tbody>
