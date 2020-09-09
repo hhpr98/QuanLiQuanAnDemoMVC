@@ -68,16 +68,38 @@ namespace QLQuanAn.Controllers
 
         public ActionResult Edit(int id)
         {
+            CuaHang cuaHang;
             List<ChuoiCuaHang> listChuoi;
-            CuaHang ch;
             using (var qlqa = new QuanLiQuanAnEntities())
             {
                 listChuoi = qlqa.ChuoiCuaHangs.ToList();
-                List<CuaHang> listCuaHang = qlqa.CuaHangs.Where(c => c.ID == id).ToList();
-                ch = listCuaHang[0];
+                cuaHang = qlqa.CuaHangs.Where(c => c.ID == id).First();
             }
-            ViewBag.curId = id;
-            return View("Edit", new Tuple<List<ChuoiCuaHang>, CuaHang>(listChuoi, ch));
+            return View("Edit", new Tuple<List<ChuoiCuaHang>, CuaHang>(listChuoi, cuaHang));
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmEdit(int id,string name, string address, double total, int number, int chuoi)
+        {
+            using (var db = new QuanLiQuanAnEntities())
+            {
+                var _mart = db.CuaHangs.Find(id);
+                _mart.TenCuaHang = name;
+                _mart.DiaChi = address;
+                _mart.DoanhThu = total;
+                _mart.SoKhach = number;
+                _mart.ChuoiCuaHang = chuoi;
+                db.SaveChanges();
+            }
+
+            // return về view index
+            List<ChuoiCuaHang> l;
+            using (var qlqa = new QuanLiQuanAnEntities())
+            {
+                l = qlqa.ChuoiCuaHangs.ToList();
+            }
+            ViewBag.curId = -1;
+            return View("Index", new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(l, null));
         }
 
         public ActionResult Detete(int id)
