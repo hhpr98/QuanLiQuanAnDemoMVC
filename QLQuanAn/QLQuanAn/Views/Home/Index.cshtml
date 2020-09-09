@@ -74,7 +74,7 @@
                                         <th scope="row">@p.ID</th>
                                         <td>@p.TenCuaHang</td>
                                         <td>@p.DiaChi</td>
-                                        <td>@p.DoanhThu VNĐ</td>
+                                        <td>@String.Format("{0,15:N0} VNĐ", @p.DoanhThu)</td>
                                         <td><center>@p.SoKhach</center></td>
                                         <td>
                                             <a href="@Url.Action("Add")" class="wishlist-btn"><i class="fa fa-plus"></i></a>
