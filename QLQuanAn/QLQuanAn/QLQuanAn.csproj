@@ -113,25 +113,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="QLQAModel.Context.tt">
+    <Content Include="Models\QLQAModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QLQAModel.Context.cs</LastGenOutput>
       <DependentUpon>QLQAModel.edmx</DependentUpon>
+      <LastGenOutput>QLQAModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="QLQAModel.tt">
+    <Content Include="Models\QLQAModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLQAModel.edmx</DependentUpon>
       <LastGenOutput>QLQAModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="QLQAModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLQAModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="QLQAModel.edmx.diagram">
-      <DependentUpon>QLQAModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\css\bootstrap-grid.css.map" />
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\css\bootstrap-reboot.css.map" />
@@ -144,6 +137,13 @@
     <Content Include="Content\js\bootstrap-reboot.min.css.map" />
     <Content Include="Content\js\bootstrap.css.map" />
     <Content Include="Content\js\bootstrap.min.css.map" />
+    <EntityDeploy Include="Models\QLQAModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLQAModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QLQAModel.edmx.diagram">
+      <DependentUpon>QLQAModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -154,28 +154,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="ChuoiCuaHang.cs">
+    <Compile Include="Models\ChuoiCuaHang.cs">
       <DependentUpon>QLQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="CuaHang.cs">
+    <Compile Include="Models\CuaHang.cs">
       <DependentUpon>QLQAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QLQAModel.Context.cs">
+    <Compile Include="Models\QLQAModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLQAModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="QLQAModel.cs">
+    <Compile Include="Models\QLQAModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLQAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="QLQAModel.Designer.cs">
+    <Compile Include="Models\QLQAModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLQAModel.edmx</DependentUpon>
@@ -200,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -10,18 +10,19 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenChuoi" Type="ntext" />
+          <Property Name="TenChuoi" Type="ntext" Nullable="false" />
         </EntityType>
         <EntityType Name="CuaHang">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenCuaHang" Type="ntext" />
+          <Property Name="TenCuaHang" Type="ntext" Nullable="false" />
           <Property Name="DiaChi" Type="ntext" />
-          <Property Name="DoanhThu" Type="float" />
-          <Property Name="SoKhach" Type="int" />
+          <Property Name="DoanhThu" Type="float" Nullable="false" />
+          <Property Name="SoKhach" Type="int" Nullable="false" />
           <Property Name="ChuoiCuaHang" Type="int" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="QuanLiQuanAnModelStoreContainer">
           <EntitySet Name="ChuoiCuaHang" EntityType="Self.ChuoiCuaHang" Schema="dbo" store:Type="Tables" />
@@ -37,18 +38,19 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenChuoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenChuoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="CuaHang">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenCuaHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenCuaHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DoanhThu" Type="Double" />
-          <Property Name="SoKhach" Type="Int32" />
+          <Property Name="DoanhThu" Type="Double" Nullable="false" />
+          <Property Name="SoKhach" Type="Int32" Nullable="false" />
           <Property Name="ChuoiCuaHang" Type="Int32" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="QuanLiQuanAnEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChuoiCuaHangs" EntityType="Self.ChuoiCuaHang" />
@@ -77,6 +79,7 @@
                 <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
                 <ScalarProperty Name="SoKhach" ColumnName="SoKhach" />
                 <ScalarProperty Name="ChuoiCuaHang" ColumnName="ChuoiCuaHang" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

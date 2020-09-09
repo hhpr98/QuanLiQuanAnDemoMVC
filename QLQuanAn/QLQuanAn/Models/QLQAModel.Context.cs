@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLQuanAn
+namespace QLQuanAn.Models
 {
     using System;
     using System.Data.Entity;

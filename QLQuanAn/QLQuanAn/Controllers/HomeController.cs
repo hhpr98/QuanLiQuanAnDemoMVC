@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLQuanAn.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,7 +31,7 @@ namespace QLQuanAn.Controllers
             {
                 listChuoi = qlqa.ChuoiCuaHangs.ToList();
 
-                listCuaHang = qlqa.CuaHangs.Where(c => c.ChuoiCuaHang == id).ToList();
+                listCuaHang = qlqa.CuaHangs.Where(c => c.ChuoiCuaHang == id).Where(item => item.isDeleted == 0).ToList();
             }
             ViewBag.curId = id;
             return View("Index", new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(listChuoi, listCuaHang));
@@ -52,6 +53,7 @@ namespace QLQuanAn.Controllers
                 _mart.DoanhThu = total;
                 _mart.SoKhach = number;
                 _mart.ChuoiCuaHang = chuoi;
+                _mart.isDeleted = 0;
                 db.CuaHangs.Add(_mart);
                 db.SaveChanges();
             }    
@@ -102,25 +104,22 @@ namespace QLQuanAn.Controllers
             return View("Index", new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(l, null));
         }
 
-        public ActionResult Detete(int id)
+        public ActionResult Delete(int id)
         {
             using (var qlqa = new QuanLiQuanAnEntities())
             {
                 CuaHang ch = qlqa.CuaHangs.Find(id);
-                qlqa.CuaHangs.Remove(ch);
+                ch.isDeleted = 1;
                 qlqa.SaveChanges();
             }
-
-            List<ChuoiCuaHang> listChuoi;
-            List<CuaHang> listCuaHang;
+            // return về view index
+            List<ChuoiCuaHang> l;
             using (var qlqa = new QuanLiQuanAnEntities())
             {
-                listChuoi = qlqa.ChuoiCuaHangs.ToList();
-
-                listCuaHang = qlqa.CuaHangs.Where(c => c.ChuoiCuaHang == id).ToList();
+                l = qlqa.ChuoiCuaHangs.ToList();
             }
-            ViewBag.curId = id;
-            return View("Index", new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(listChuoi, listCuaHang));
+            ViewBag.curId = -1;
+            return View("Index", new Tuple<List<ChuoiCuaHang>, List<CuaHang>>(l, null));
         }
     }
 }

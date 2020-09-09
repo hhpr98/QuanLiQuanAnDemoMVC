@@ -7,14 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLQuanAn
+namespace QLQuanAn.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ChuoiCuaHang
+    public partial class CuaHang
     {
         public int ID { get; set; }
-        public string TenChuoi { get; set; }
+        public string TenCuaHang { get; set; }
+        public string DiaChi { get; set; }
+        public double DoanhThu { get; set; }
+        public int SoKhach { get; set; }
+        public int ChuoiCuaHang { get; set; }
+        public int isDeleted { get; set; }
     }
 }
